@@ -19,13 +19,8 @@ source activate nfd
 
 echo "beginning executing cases..."
 
-# Input directory
-INDIR=/work/mech-ai/jrrade/Tri-plane/02691156
+ID=0 # 1,2,3,4 <-- OBJ IDs
 
-# Output directory
-OUTDIR=/work/mech-ai/jrrade/Tri-plane/aeroplane_subset
+parallel="parallel --controlmaster --delay .2 -j $SLURM_NTASKS --joblog logs/runtask_${ID}_${SLURM_ARRAY_TASK_ID}.log"
 
-
-parallel="parallel --controlmaster --delay .2 -j $SLURM_NTASKS --joblog logs/runtask_$SLURM_ARRAY_TASK_ID.log"
-
-$parallel "python /work/mech-ai/jrrade/Tri-plane/NFD/nfd/triplane_decoder/generate_3d_dataset.py --input $INDIR/{1}/models/model_normalized.obj --output $OUTDIR/{1}.npy --type border --count 1000000" :::: args/args_$SLURM_ARRAY_TASK_ID.txt
+$parallel "python /work/mech-ai/jrrade/Tri-plane/NFD/nfd/triplane_decoder/generate_3d_dataset.py --input {1}/models/model_normalized.obj --output {1}/models/model_normalized.npy --type border --count 1000000" :::: args/args_${ID}_${SLURM_ARRAY_TASK_ID}.txt
