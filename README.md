@@ -17,6 +17,9 @@ The processed dataset contains `.npy` files where each file contains:
 
 Currently it only has one object class: `aeroplane`.
 
+## Follow the differen experiments runs on Weights and Biases:
+[wandb link](https://wandb.ai/jrrade/triplane-ae/runs?view=grid)
+
 ## TODOs:
 - [ ] Add more object classes
 - [ ] Add triplane visualization
