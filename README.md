@@ -21,8 +21,9 @@ Currently it only has one object class: `aeroplane`.
 [wandb link](https://wandb.ai/jrrade/triplane-ae/runs?view=grid)
 
 ## TODOs:
-- [ ] Add more object classes
+- [x] Add more object classes
 - [ ] Add triplane visualization
+- [ ] Perform analysis on tri-plane representations such as how similar/different are they across objects of same shape category
 
 ## Acknowledgments
 

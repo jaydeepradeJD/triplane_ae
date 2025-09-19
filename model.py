@@ -19,7 +19,7 @@ class FourierFeatureTransform(nn.Module):
 
 
 class MultiTriplane(nn.Module):
-    def __init__(self, args, num_objs, input_dim=3, output_dim=1, triplane_resolution=128, noise_val = None, device = 'cuda'):
+    def __init__(self, num_objs, input_dim=3, output_dim=1, triplane_resolution=128, noise_val = None, device = 'cuda'):
         super().__init__()
         self.device = device
         self.num_objs = num_objs
@@ -40,8 +40,8 @@ class MultiTriplane(nn.Module):
 
     def sample_plane(self, coords2d, plane):
         assert len(coords2d.shape) == 3, coords2d.shape
-        if plane.shape[0] != coords2d.shape[0]:
-            plane = plane.expand(coords2d.shape[0], -1, -1, -1)
+        # if plane.shape[0] != coords2d.shape[0]:
+        #     plane = plane.expand(coords2d.shape[0], -1, -1, -1)
             
         sampled_features = torch.nn.functional.grid_sample(plane,
                                                            coords2d.reshape(coords2d.shape[0], 1, -1, coords2d.shape[-1]),
